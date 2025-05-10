@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Étape 9 - Port de Hambourg</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #aafce5, #c5fff1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .main-image img {
+            width: 800px;
+            height: auto;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .main-image img:hover {
+            transform: scale(1.02);
+        }
+        .question {
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 1.4em;
+            color: #003366;
+            text-align: center;
+            margin-top: 30px;
+            max-width: 900px;
+        }
+        .question b {
+            color: indigo;
+        }
+        .input-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .footer {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #004080;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-image">
+        <img src="Hambourg.jpg" alt="Port de Hambourg" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="question">
+        Voici une destination possible pour ce porte-conteneur : le port de Hambourg en Allemagne.<br>
+        <b>Voici une partie de ses quais.<br>Quels sont les lieux où pourrait accoster ce navire ?<br> [tape ta réponse sous forme de chiffres collés. Si tu penses que la navire pourrait accoster aux lieux 1, 2 et 3, tape "123"]</b>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="answer">
+        <button onclick="checkAnswer()">Valider</button>
+    </div>
+
+    <div class="footer">Tapez votre réponse et validez</div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const val = document.getElementById("answer").value.trim();
+            const validAnswers = ["135", "153", "513", "531", "315", "351"];
+            if (validAnswers.includes(val)) {
+                window.location.href = "page11.html";
+            } else {
+                document.getElementById("answer").value = "";
+            }
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

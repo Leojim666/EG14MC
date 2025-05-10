@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Étape 1 - Origine des vêtements</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #b3d9ff, #e6f2ff);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 20px;
+        }
+        .content {
+            width: 100%;
+            max-width: 1200px;
+        }
+        .question {
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 1.6em;
+            color: #003366;
+            margin: 0 auto 30px auto;
+            width: 90%;
+        }
+        .question b {
+            color: indigo;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        .gallery img {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .input-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .footer {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #004080;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="question">
+            D'où viennent les vêtements que tu portes ? Ils mentionnent "Made in..." mais les éléments qui les composent parcourent de longs trajets.<br><br>
+            Prenons l'exemple d'un jean américain. Le tableau ci-dessous indique les pays concernés par sa fabrication.<br><br>
+            <b>Écris ci-dessous les noms des deux pays que l'on pourrait trouver après "Made in..." sur ce jean. [Tape ta réponse sous la forme : Pays 1 Pays 2]</b>
+        </div>
+
+        <div class="gallery">
+            <img src="ex1.png" alt="Carte ou image 1" onclick="openLightbox(this.src)">
+            <img src="ex2.png" alt="Carte ou image 2" onclick="openLightbox(this.src)">
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="answer" placeholder="Ex : Suisse Namibie">
+            <button onclick="checkAnswer()">Valider</button>
+        </div>
+
+        <div class="footer">Tapez votre réponse et validez</div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const val = document.getElementById("answer").value.trim().toLowerCase();
+            const validAnswers = ["chine france", "france chine"];
+
+            if (validAnswers.includes(val)) {
+                window.location.href = "page3.html";
+            } else {
+                document.getElementById("answer").value = "";
+            }
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

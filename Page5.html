@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Étape 4 - Le port de Yangshan</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #a1f9de, #d4fff3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .question {
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 1.2em;
+            color: #003366;
+            max-width: 1000px;
+            text-align: justify;
+        }
+        .question p:first-of-type {
+            font-style: italic;
+            text-decoration: underline;
+        }
+        .question b {
+            color: indigo;
+        }
+        .side-images {
+            position: absolute;
+            left: 50px;
+            top: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .side-images img {
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .side-images img:hover {
+            transform: scale(1.05);
+        }
+        .input-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .footer {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #004080;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="question">
+        <p>Le port de Yangshan à Shangaï, article du site leventdelachine.com</p>
+
+        <p>À Shanghai, le terminal de Yangshan est l’orgueil de ce premier port mondial, capable de traiter 750 millions de tonnes de vrac par an et 40 millions de conteneurs. On accède à Yangshan par une autoroute sur piles de 32km : bâti sur des îlots arasés [mis à ras, aplanis], le port a été aménagé avec une profondeur minimale de 15m, capable de recevoir les plus imposants bâtiments.</p>
+
+        <p>En particulier, depuis décembre 2017, le terminal n°4 offre au visiteur le spectacle hallucinant d’un port fantôme : ponts-grues se déplaçant sans grutiers, stoppant droit au-dessus du conteneur pour le saisir du bout de leurs mâchoires, les faire évoluer par la voie des airs pour les reposer délicatement sur le pont du navire. Pas un docker [métier consistant à charger et décharger les navires] à l’horizon : tout est piloté par la batterie d’ordinateurs de la tour de contrôle. Ce terminal aux 2,6km d’appontement compte 26 grues lourdes, 120 ponts-grues, 130 camions autonomes. Leur ballet coordonné permet de traiter plus de navires, en réduisant leur temps d’immobilisation. Ce système à intelligence artificielle renforce également la sécurité, éliminant les accidents liés à l’erreur humaine. Il réduit aussi la pollution de 10%.</p>
+
+        <p><b>Quelle expression dans le document ci-dessus exprime le fait que ce port est très informatisé ?</b></p>
+    </div>
+
+    <div class="side-images">
+        <img src="yangshan.jpg" alt="Photo du port de Yangshan" onclick="openLightbox(this.src)">
+        <img src="yangshan2.jpg" alt="Deuxième photo du port de Yangshan" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="answer">
+        <button onclick="checkAnswer()">Valider</button>
+    </div>
+
+    <div class="footer">Tapez votre réponse et validez</div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const val = document.getElementById("answer").value.trim().toLowerCase();
+            const accepted = ["fantôme", "port fantôme"];
+            if (accepted.includes(val)) {
+                window.location.href = "page6.html";
+            } else {
+                document.getElementById("answer").value = "";
+            }
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

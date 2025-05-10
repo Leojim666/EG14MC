@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Étape 2 - Matières premières</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #a1f0d1, #e6fff6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .question {
+            font-family: "Trebuchet MS", sans-serif;
+            font-size: 1.6em;
+            color: #003366;
+            max-width: 1000px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .question b {
+            color: indigo;
+        }
+        .side-images {
+            position: absolute;
+            left: 50px;
+            top: 120px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .side-images img {
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .side-images img:hover {
+            transform: scale(1.05);
+        }
+        .main-image {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .main-image img {
+            width: 600px;
+            max-width: 90vw;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .main-image img:hover {
+            transform: scale(1.02);
+        }
+        .input-area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+        .footer {
+            margin-top: 10px;
+            font-size: 1em;
+            color: #004080;
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="question">
+        La fabrication d'un jean nécessite que l'on cultive des végétaux, que l'on extraie des minerais ou que l'on fabrique des produits chimiques.<br><br>
+        <b>Sur la carte ci-dessous, repère les pays qui produisent des matières premières entrant dans le processus de fabrication du jean. Additionne leurs chiffres [réponse en chiffre].</b>
+    </div>
+
+    <div class="side-images">
+        <img src="ex1.png" alt="Carte ou image 1" onclick="openLightbox(this.src)">
+        <img src="ex2.png" alt="Carte ou image 2" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="main-image">
+        <img src="carte.png" alt="Carte principale" onclick="openLightbox(this.src)">
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="answer" placeholder="Ex : 17">
+        <button onclick="checkAnswer()">Valider</button>
+    </div>
+
+    <div class="footer">Tapez votre réponse et validez</div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="">
+    </div>
+
+    <script>
+        let attemptCount = 0;
+
+        function checkAnswer() {
+            const val = document.getElementById("answer").value.trim();
+            if (val === "48") {
+                window.location.href = "page4.html";
+            } else {
+                document.getElementById("answer").value = "";
+                attemptCount++;
+                if (attemptCount >= 5) {
+                    window.location.href = "index.php";
+                }
+            }
+        }
+
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
